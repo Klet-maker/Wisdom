@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda | Wisdom</title>
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --text-color: #333333;
+            --accent-color: #eeeeee;
+            --hover-color: #f8f8f8;
+            --border-color: #dddddd;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            transition: all 0.5s ease;
+            align-items: center;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #aaaaaa;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--text-color);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Estilos para el botón hamburguesa */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+            z-index: 1001;
+        }
+        
+        /* Estilos para el menú móvil */
+        .mobile-menu-active .nav-links {
+            right: 0;
+        }
+        
+        .mobile-menu-active .hamburger {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+        
+        .mobile-menu-active .hamburger i:before {
+            content: "\f00d"; /* Ícono X */
+        }
+        
+        .page-header {
+            padding: 150px 0 50px;
+            text-align: center;
+            background-color: var(--accent-color);
+        }
+        
+        .page-title {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .store-filters {
+            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+        }
+        
+        .filter-label {
+            margin-right: 10px;
+            font-weight: 500;
+        }
+        
+        .filter-select {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+            background-color: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        .search-form {
+            display: flex;
+            max-width: 300px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px 0 0 5px;
+            font-size: 14px;
+        }
+        
+        .search-btn {
+            background-color: var(--text-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        
+        .products-container {
+            padding: 30px 0 100px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-img {
+            height: 250px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        
+        .pagination-item {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            border-radius: 50%;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+        
+        .pagination-item:hover, .pagination-item.active {
+            background-color: var(--text-color);
+            color: var(--primary-color);
+        }
+        
+        .newsletter {
+            padding: 80px 0;
+            background-color: var(--accent-color);
+            text-align: center;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 36px;
+            font-weight: 700;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 30px auto 0;
+            display: flex;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 30px 0 0 30px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .newsletter-btn {
+            background-color: var(--text-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 0 30px;
+            border-radius: 0 30px 30px 0;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-btn:hover {
+            background-color: #222;
+        }
+        
+        footer {
+            padding: 50px 0;
+            background-color: var(--text-color);
+            color: var(--primary-color);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        
+        .mobile-menu-active .overlay {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 130px 0 30px;
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .store-filters {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .filter-group {
+                margin-bottom: 15px;
+                width: 100%;
+            }
+            
+            .search-form {
+                width: 100%;
+                max-width: none;
+            }
+            
+            /* Mostrar botón hamburguesa en pantallas pequeñas */
+            .hamburger {
+                display: block;
+            }
+            
+            /* Estilo del menú móvil */
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 80%;
+                max-width: 300px;
+                flex-direction: column;
+                background-color: var(--primary-color);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                padding-top: 80px;
+                align-items: center;
+                justify-content: flex-start;
+                z-index: 1000;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Wisdom</div>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="store.html">Tienda</a></li>
+                    <li><a href="about.html">Información</a></li>
+                    <li><a href="privacy.html">Privacidad</a></li>
+                    <li><a href="#" class="btn">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="overlay" id="overlay"></div>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 id="Tienda" class="page-title">Nuestra Tienda</h1>
+            <p>Descubre todos nuestros libros de texto para aprender trompeta con seguridad y profesionalismo.</p>
+        </div>
+    </section>
+
+    <section class="store-filters">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; width: 100%; flex-wrap: wrap;">
+                <div class="filter-group">
+                    <span class="filter-label">Ordenar por:</span>
+                    <select class="filter-select">
+                        <option>Destacados</option>
+                        <option>Precio: menor a mayor</option>
+                        <option>Precio: mayor a menor</option>
+                        <option>Más nuevos</option>
+                        <option>Más populares</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">Nivel:</span>
+                    <select class="filter-select">
+                        <option>Todos los niveles</option>
+                        <option>Principiante</option>
+                        <option>Intermedio</option>
+                        <option>Avanzado</option>
+                    </select>
+                </div>
+            
+                <form class="search-form">
+                    <input type="text" placeholder="Buscar productos..." class="search-input">
+                    <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-container">
+        <div class="container">
+            <div class="products-grid">
+                <!-- Producto 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="Trompeta-basica.jpg" alt="Trompeta Básica" style="height: 250px;"/>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Trompeta Básica: Primeros Pasos</h3>
+                        <p class="product-price">$29.99</p>
+                        <div class="product-meta">
+                            <span>Nivel: Principiante</span>
+                            <span>Páginas: 120</span>
+                        </div>
+                        <p class="product-description">Guía completa para principiantes que desean aprender los fundamentos de la trompeta sin complicaciones.</p>
+                        <a href="#" class="btn">Añadir al carrito</a>
+                    </div>
+                </div>
+                
+                <!-- Producto 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="Trompeta-intermedio.jpg" alt="Trompeta Intermedia" style="height: 250px;"/>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Trompeta Intermedia: Perfecciona tu técnica</h3>
+                        <p class="product-price">$39.99</p>
+                        <div class="product-meta">
+                            <span>Nivel: Intermedio</span>
+                            <span>Páginas: 180</span>
+                        </div>
+                        <p class="product-description">Lleva tus habilidades al siguiente nivel con ejercicios avanzados y consejos profesionales.</p>
+                        <a href="#" class="btn">Añadir al carrito</a>
+                    </div>
+                </div>
+                
+                <!-- Producto 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="Trompeta-avanzada.jpg" alt="Trompeta Avanzada" style="height: 250px;"/>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Trompeta Avanzada: Dominio Total</h3>
+                        <p class="product-price">$49.99</p>
+                        <div class="product-meta">
+                            <span>Nivel: Avanzado</span>
+                            <span>Páginas: 250</span>
+                        </div>
+                        <p class="product-description">Conviértete en un experto con este completo manual para profesionales y entusiastas avanzados.</p>
+                        <a href="#" class="btn">Añadir al carrito</a>
+                    </div>
+                </div>
+                
+                <!-- Producto 4 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="Ejercicios Diarios para Trompetistas.jpg" alt="Ejercicios diarios" style="height: 250px;"/>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ejercicios Diarios para Trompetistas</h3>
+                        <p class="product-price">$24.99</p>
+                        <div class="product-meta">
+                            <span>Nivel: Todos</span>
+                            <span>Páginas: 100</span>
+                        </div>
+                        <p class="product-description">Rutinas diarias para mantener y mejorar la técnica, adaptables a todos los niveles de experiencia.</p>
+                        <a href="#" class="btn">Añadir al carrito</a>
+                    </div>
+                </div>
+                
+                <!-- Producto 5 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="Jazz para Trompetistas Modernos.jpg" alt="Jazz Trompeta" style="height: 250px;"/>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Jazz para Trompetistas Modernos</h3>
+                        <p class="product-price">$44.99</p>
+                        <div class="product-meta">
+                            <span>Nivel: Intermedio-Avanzado</span>
+                            <span>Páginas: 210</span>
+                        </div>
+                        <p class="product-description">Técnicas de improvisación, escalas y patrones para dominar el jazz contemporáneo con tu trompeta.</p>
+                        <a href="#" class="btn">Añadir al carrito</a>
+                    </div>
+                </div>
+                
+                <!-- Producto 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="Respiración y Postura para Trompetistas.jpg" alt="Respiración y Postura" style="height: 250px;"/>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Respiración y Postura para Trompetistas</h3>
+                        <p class="product-price">$34.99</p>
+                        <div class="product-meta">
+                            <span>Nivel: Todos</span>
+                            <span>Páginas: 150</span>
+                        </div>
+                        <p class="product-description">Guía especializada en técnicas de respiración y postura correcta para maximizar tu rendimiento.</p>
+                        <a href="#" class="btn">Añadir al carrito</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <a href="#" class="pagination-item active">1</a>
+                <a href="#" class="pagination-item">2</a>
+                <a href="#" class="pagination-item">3</a>
+                <a href="#" class="pagination-item"><i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="container">
+            <h2 class="section-title">Suscríbete a nuestro boletín</h2>
+            <p>Recibe consejos exclusivos, nuevos lanzamientos y ofertas especiales directamente en tu bandeja de entrada.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Tu correo electrónico" class="newsletter-input" required>
+                <button type="submit" class="newsletter-btn">Suscribir</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Wisdom</h3>
+                    <p>Libros de texto para aprender a tocar la trompeta con seguridad y profesionalismo.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="store.html">Tienda</a></li>
+                        <li><a href="about.html">Información</a></li>
+                        <li><a href="privacy.html">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@wisdom-music.com</li>
+                        <li><i class="fas fa-phone"></i> +34 912 345 678</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Calle Principal 123, Madrid</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Síguenos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                        <li><a href="#"><i class="fab fa-spotify"></i> Spotify</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Wisdom. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script-tienda.js"></script>
+</body>
+</html>

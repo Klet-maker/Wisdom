@@ -1,0 +1,442 @@
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad - Wisdom</title>
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --text-color: #333333;
+            --accent-color: #eeeeee;
+            --hover-color: #f8f8f8;
+            --border-color: #dddddd;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #aaaaaa;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--text-color);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos para el boton hamburguesa */
+        .hamburger{
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+            z-index: 1001;
+        }
+
+        /* Estilos para el menu movil */
+        .mobile-menu-active .nav-links{
+            right: 0;
+        }
+
+        .mobile-menu-active .hamburger i:before{
+            content: "\f00d";
+        }
+        
+        .page-header {
+            padding: 150px 0 50px;
+            text-align: center;
+            background-color: var(--accent-color);
+        }
+        
+        .page-title {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .privacy-content {
+            padding: 60px 0 100px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .privacy-section {
+            margin-bottom: 40px;
+        }
+        
+        .privacy-section h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .privacy-section h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            margin-top: 25px;
+            font-weight: 500;
+        }
+        
+        .privacy-section p, .privacy-section ul {
+            margin-bottom: 15px;
+        }
+        
+        .privacy-section ul {
+            padding-left: 20px;
+        }
+        
+        .privacy-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .last-updated {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .back-to-home {
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        footer {
+            padding: 50px 0;
+            background-color: var(--text-color);
+            color: var(--primary-color);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .overlay{
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .mobile-menu-active .overlay{
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 130px 0 30px;
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .filter-group {
+                width: 100%;
+                max-width: none;
+            }
+
+            .hamburger{
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 80%;
+                max-width: 300px;
+                flex-direction: column;
+                background-color: var(--primary-color);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                padding-top: 80px;
+                align-items: center;
+                justify-content: flex-start;
+                z-index: 1000;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Wisdom</div>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="store.html">Tienda</a></li>
+                    <li><a href="about.html">Información</a></li>
+                    <li><a href="privacy.html">Privacidad</a></li>
+                    <li><a href="#" class="btn">Contáctanos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="overlay" id="overlay"></div>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Política de Privacidad</h1>
+            <p>Tu privacidad es importante para nosotros</p>
+        </div>
+    </section>
+
+    <section class="privacy-content">
+        <div class="container">
+            <p class="last-updated">Última actualización: 10 de mayo de 2025</p>
+            
+            <div class="privacy-section">
+                <h2>1. Introducción</h2>
+                <p>En Wisdom ("nosotros", "nuestro" o "la empresa"), valoramos su privacidad y nos comprometemos a proteger sus datos personales. Esta política de privacidad explica cómo recopilamos, utilizamos, divulgamos y protegemos su información cuando visita nuestro sitio web o compra nuestros productos.</p>
+                <p>Por favor, lea detenidamente esta política de privacidad para entender nuestras políticas y prácticas con respecto a sus datos personales. Al utilizar nuestro sitio web o proporcionar su información personal a través de cualquiera de nuestros canales, usted acepta las prácticas descritas en esta política.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>2. Información que recopilamos</h2>
+                <p>Podemos recopilar diferentes tipos de información, incluyendo:</p>
+                <ul>
+                    <li><strong>Información personal identificable</strong>: Nombre, dirección de correo electrónico, dirección postal, número de teléfono, detalles de facturación y envío cuando realiza una compra.</li>
+                    <li><strong>Información de uso</strong>: Cómo y cuándo utiliza nuestro sitio web, patrones de visualización de páginas, tiempos de acceso, y otra información sobre cómo interactúa con nuestro sitio.</li>
+                    <li><strong>Información del dispositivo</strong>: Dirección IP, tipo de navegador, proveedor de servicios de Internet, identificadores de dispositivos, sistema operativo y otra tecnología en los dispositivos que utiliza para acceder a nuestro sitio.</li>
+                    <li><strong>Cookies y tecnologías similares</strong>: Utilizamos cookies y tecnologías similares para recopilar información sobre sus actividades en línea.</li>
+                </ul>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>3. Cómo utilizamos su información</h2>
+                <p>Utilizamos la información que recopilamos para los siguientes propósitos:</p>
+                <ul>
+                    <li>Procesar y gestionar sus pedidos de productos</li>
+                    <li>Proporcionarle información, productos o servicios que nos solicite</li>
+                    <li>Mejorar nuestro sitio web, productos y servicios</li>
+                    <li>Personalizar su experiencia y entregarle contenido relevante</li>
+                    <li>Comunicarnos con usted sobre actualizaciones, promociones y eventos</li>
+                    <li>Enviarle boletines informativos si ha aceptado recibirlos</li>
+                    <li>Proteger nuestro sitio web y nuestros usuarios de actividades fraudulentas</li>
+                    <li>Cumplir con nuestras obligaciones legales</li>
+                </ul>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>4. Compartir su información</h2>
+                <p>No vendemos ni alquilamos sus datos personales a terceros. Sin embargo, podemos compartir su información en las siguientes circunstancias:</p>
+                <ul>
+                    <li><strong>Proveedores de servicios</strong>: Podemos compartir su información con terceros que nos ayudan a operar nuestro sitio web, realizar negocios o brindarle servicios (como procesadores de pagos o servicios de envío).</li>
+                    <li><strong>Requisitos legales</strong>: Podemos divulgar su información cuando sea necesario para cumplir con la ley, procedimientos judiciales, solicitudes gubernamentales o procesos legales.</li>
+                    <li><strong>Protección</strong>: Podemos revelar información para proteger los derechos, la propiedad o la seguridad de Wisdom, nuestros usuarios u otros.</li>
+                    <li><strong>Transacciones comerciales</strong>: En caso de fusión, adquisición o venta de activos, sus datos personales podrían ser transferidos. Le notificaremos antes de que sus datos personales sean transferidos.</li>
+                </ul>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>5. Seguridad de los datos</h2>
+                <p>La seguridad de sus datos es importante para nosotros. Implementamos medidas de seguridad apropiadas para proteger sus datos personales contra el acceso no autorizado, la alteración, la divulgación o la destrucción. Sin embargo, ninguna transmisión por Internet o método de almacenamiento electrónico es 100% seguro, por lo que no podemos garantizar su seguridad absoluta.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>6. Sus derechos de privacidad</h2>
+                <p>Dependiendo de su ubicación, puede tener ciertos derechos con respecto a sus datos personales, que pueden incluir:</p>
+                <ul>
+                    <li>Acceder a sus datos personales</li>
+                    <li>Corregir datos inexactos</li>
+                    <li>Eliminar sus datos personales</li>
+                    <li>Oponerse al procesamiento de sus datos</li>
+                    <li>Solicitar la restricción del procesamiento de sus datos</li>
+                    <li>Solicitar la portabilidad de sus datos</li>
+                    <li>Retirar su consentimiento en cualquier momento</li>
+                </ul>
+                <p>Para ejercer cualquiera de estos derechos, contáctenos utilizando la información proporcionada al final de esta política.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>7. Conservación de datos</h2>
+                <p>Conservaremos sus datos personales solo durante el tiempo necesario para cumplir con los fines para los que fueron recopilados, incluido el cumplimiento de requisitos legales, contables o de informes.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>8. Menores</h2>
+                <p>Nuestro sitio web no está destinado a menores de 18 años y no recopilamos a sabiendas información personal de menores de 18 años. Si es padre o tutor y cree que su hijo nos ha proporcionado información personal, contáctenos para que podamos tomar las medidas adecuadas.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>9. Enlaces a otros sitios web</h2>
+                <p>Nuestro sitio web puede contener enlaces a otros sitios que no están operados por nosotros. Si hace clic en un enlace de terceros, será dirigido al sitio de ese tercero. Le recomendamos que revise la política de privacidad de cada sitio que visite. No tenemos control ni asumimos responsabilidad por el contenido, las políticas de privacidad o las prácticas de sitios o servicios de terceros.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>10. Cambios a esta política de privacidad</h2>
+                <p>Podemos actualizar nuestra política de privacidad periódicamente. Publicaremos cualquier cambio en esta página y, si los cambios son significativos, proporcionaremos un aviso más destacado. La fecha de la última actualización se indica al principio de esta política.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>11. Contáctenos</h2>
+                <p>Si tiene preguntas sobre esta política de privacidad o sobre nuestras prácticas de privacidad, contáctenos en:</p>
+                <p>
+                    <strong>Wisdom</strong><br>
+                    Email: privacidad@wisdom-trumpet.com<br>
+                    Teléfono: +34 600 000 000<br>
+                    Dirección: Calle Música 123, 28001 Madrid, España
+                </p>
+            </div>
+            
+            <div class="back-to-home">
+                <a href="index.html" class="btn">Volver a Inicio</a>
+            </div>
+</div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Wisdom</h3>
+                    <p>Métodos de trompeta premium para una nueva generación de músicos.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="store.html">Tienda</a></li>
+                        <li><a href="about.html">Información</a></li>
+                        <li><a href="privacy.html">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:info@wisdom-trumpet.com">info@wisdom-trumpet.com</a></li>
+                        <li><a href="tel:+34600000000">+34 600 000 000</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Síguenos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Wisdom. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

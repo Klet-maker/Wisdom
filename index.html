@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisdom - Métodos de Trompeta Premium</title>
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --text-color: #333333;
+            --accent-color: #eeeeee;
+            --hover-color: #f8f8f8;
+            --border-color: #dddddd;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            transition: all 0.5s ease;
+            align-items: center;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #aaaaaa;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--text-color);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Estilos para el botón hamburguesa */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+            z-index: 1001;
+        }
+        
+        /* Estilos para el menú móvil */
+        .mobile-menu-active .nav-links {
+            right: 0;
+        }
+        
+        .mobile-menu-active .hamburger {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+        
+        .mobile-menu-active .hamburger i:before {
+            content: "\f00d"; /* Ícono X */
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background-color: var(--primary-color);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px; /* Agregado para compensar el header fijo */
+        }
+        
+       /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background-color: var(--primary-color);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px; /* Agregado para compensar el header fijo */
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            z-index: 1;
+            padding: 40px 0;
+            width: 100%;
+        }
+        
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            /* Aseguramos que el título no se corte */
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        .hero-description {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 80%;
+            background-color: var(--accent-color);
+            border-radius: 20px 0 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 0; /* Aseguramos que esté detrás del contenido */
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: var(--primary-color);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 36px;
+            font-weight: 700;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: var(--accent-color);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .feature-description {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        /* Products Preview */
+        .products-preview {
+            padding: 100px 0;
+            background-color: var(--accent-color);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-img {
+            height: 250px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .view-all {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 100px 0;
+            background-color: var(--primary-color);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .team-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .team-position {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .team-bio {
+            font-size: 14px;
+            color: #777;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: var(--accent-color);
+            text-align: center;
+        }
+        
+        .testimonial-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            padding: 80px 0;
+            background-color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 30px auto 0;
+            display: flex;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 30px 0 0 30px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .newsletter-btn {
+            background-color: var(--text-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 0 30px;
+            border-radius: 0 30px 30px 0;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-btn:hover {
+            background-color: #222;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 50px 0;
+            background-color: var(--text-color);
+            color: var(--primary-color);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 992px) {
+            .hero {
+                padding-top: 100px; /* Más espacio para compensar el header en pantallas medianas */
+            }
+            
+            .hero-image {
+                width: 45%;
+                opacity: 0.7; /* Hacemos la imagen más transparente para que el texto sea más legible */
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                padding-right: 40%; /* Espacio para que no se solape con la imagen */
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Estilos normales para el menú en pantallas grandes */
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 80px;
+            }
+            
+            .hero-image {
+                display: none; /* Ocultamos la imagen en móviles */
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+                padding-right: 0;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Mostrar botón hamburguesa en pantallas pequeñas */
+            .hamburger {
+                display: block;
+            }
+            
+            /* Estilo del menú móvil */
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 80%;
+                max-width: 300px;
+                flex-direction: column;
+                background-color: var(--primary-color);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                padding-top: 80px;
+                align-items: center;
+                justify-content: flex-start;
+                z-index: 1000;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+            
+            .mobile-menu-active .overlay {
+                display: block;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Wisdom</div>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="store.html">Tienda</a></li>
+                    <li><a href="about.html">Información</a></li>
+                    <li><a href="privacy.html">Privacidad</a></li>
+                    <li><a href="#" class="btn">Contáctanos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="overlay" id="overlay"></div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Métodos de Trompeta para una Nueva Generación</h1>
+                <p class="hero-description">En Wisdom, creamos libros de texto para aprender a tocar la trompeta con un enfoque moderno. Disponibles cuando los necesites, diseñados para músicos millennials que buscan excelencia y accesibilidad.</p>
+                <a href="store.html" class="btn">Explora nuestros métodos</a>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-music" style="font-size: 120px; color: #333;"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Por qué elegir Wisdom</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="feature-title">Contenido Premium</h3>
+                    <p class="feature-description">Nuestros libros están desarrollados por trompetistas profesionales para garantizar la máxima calidad educativa.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3 class="feature-title">Disponibilidad Total</h3>
+                    <p class="feature-description">Accede a nuestros métodos en cualquier momento y lugar, adaptándonos a tu estilo de vida.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="feature-title">Enfoque Profesional</h3>
+                    <p class="feature-description">Diseñados para llevarte desde los fundamentos hasta técnicas avanzadas con seguridad y confianza.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-preview">
+        <div class="container">
+            <h2 class="section-title">Nuestros Métodos Destacados</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-book-open" style="font-size: 60px; color: #333;"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Fundamentos de Trompeta Vol. 1</h3>
+                        <div class="product-price">$29.99</div>
+                        <a href="store.html" class="btn">Ver detalles</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-book-open" style="font-size: 60px; color: #333;"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Técnicas Avanzadas</h3>
+                        <div class="product-price">$39.99</div>
+                        <a href="store.html" class="btn">Ver detalles</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-book-open" style="font-size: 60px; color: #333;"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Jazz para Trompetistas</h3>
+                        <div class="product-price">$34.99</div>
+                        <a href="store.html" class="btn">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all">
+                <a href="store.html" class="btn">Ver todos los productos</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="team" id="team">
+        <div class="container">
+            <h2 class="section-title">Acerca del Equipo</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user" style="font-size: 50px; color: #333;"></i>
+                    </div>
+                    <h3 class="team-name">María González</h3>
+                    <p class="team-position">Fundadora y Directora</p>
+                    <p class="team-bio">Trompetista profesional con más de 15 años de experiencia en orquestas sinfónicas y enseñanza.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user" style="font-size: 50px; color: #333;"></i>
+                    </div>
+                    <h3 class="team-name">Carlos Jiménez</h3>
+                    <p class="team-position">Director Pedagógico</p>
+                    <p class="team-bio">Especialista en metodologías de enseñanza musical con enfoque en instrumentos de viento.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user" style="font-size: 50px; color: #333;"></i>
+                    </div>
+                    <h3 class="team-name">Ana Pérez</h3>
+                    <p class="team-position">Diseñadora de Contenido</p>
+                    <p class="team-bio">Combina su formación musical con diseño gráfico para crear materiales educativos atractivos y efectivos.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user" style="font-size: 50px; color: #333;"></i>
+                    </div>
+                    <h3 class="team-name">Miguel Sánchez</h3>
+                    <p class="team-position">Experto en Jazz</p>
+                    <p class="team-bio">Músico de jazz con amplia trayectoria que aporta su experiencia para nuestros métodos especializados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen nuestros estudiantes</h2>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Los métodos de Wisdom transformaron mi forma de tocar la trompeta. La claridad con la que explican técnicas complejas me ha permitido avanzar mucho más rápido de lo que esperaba."</p>
+                <p class="testimonial-author">- Alejandro R., Músico</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="container">
+            <h2 class="section-title">Suscríbete a nuestro boletín</h2>
+            <p>Recibe las últimas novedades, consejos y ofertas exclusivas directamente en tu correo.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Tu correo electrónico" required>
+                <button type="submit" class="newsletter-btn">Suscribirse</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Wisdom</h3>
+                    <p>Métodos de trompeta premium para una nueva generación de músicos.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="store.html">Tienda</a></li>
+                        <li><a href="info.html">Información</a></li>
+                        <li><a href="privacy.html">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:info@wisdom-trumpet.com">info@wisdom-trumpet.com</a></li>
+                        <li><a href="tel:+34600000000">+34 600 000 000</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Síguenos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Wisdom. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
